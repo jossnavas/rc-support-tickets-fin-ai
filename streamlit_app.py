@@ -28,13 +28,13 @@ with input_col2:
             "Answer": answer_input
         })
 
-# Centered output table and clear button
+# Use the same column layout for the output table and clear button
 if st.session_state.table_data:
     output_col1, output_col2, output_col3 = st.columns([1, 2, 1])
     with output_col2:
         df = pd.DataFrame(st.session_state.table_data)
         st.write("### Table of Entries")
-        st.dataframe(df)
+        st.dataframe(df, width=700)  # Adjust width to match input fields
 
         # Button to clear table contents
         if st.button("Clear Table"):
