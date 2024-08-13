@@ -22,3 +22,33 @@ with input_col2:
     date_input = st.date_input("Date")
     question_input = st.text_area("Question", height=100, value=st.session_state.question_input, key="question_input", help="Enter your question here.")
     answer_input = st.text_area("Answer", height=150, value=st.session_state.answer_input, key="answer_input", help="Enter the answer here.")
+    
+    # Centered "Add to Table" button
+    add_button = st.button("Add to Table")
+    if add_button:
+        # Append the new entry to the session state table data
+        st.session_state.table_data.append({
+            "Date": date_input,
+            "Question": st.session_state.question_input,
+            "Answer": st.session_state.answer_input
+        })
+
+        # Clear the input boxes
+        st.session_state.question_input = ""
+        st.session_state.answer_input = ""
+        st.experimental_rerun()  # Force a rerun to update the UI with cleared inputs
+
+# Centered output table and clear button
+if st.session_state.table_data:
+    output_col1, output_col2, output_col3 = st.columns([1, 2, 1])
+    with output_col2:
+        df = pd.DataFrame(st.session_state.table_data)
+        st.write("### Table of Entries")
+        st.dataframe(df)
+
+        # Button to clear table contents
+        if st.button("Clear Table"):
+            # Clear the table data
+            st.session_state.table_data = []
+            st.experimental_rerun()  # Force a rerun to update the UI with cleared table
+            st.success("Table contents cleared.")
