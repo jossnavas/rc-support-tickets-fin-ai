@@ -28,7 +28,7 @@ with input_col2:
             "Answer": answer_input
         })
 
-# Centered output table and delete button
+# Centered output table and clear button
 if st.session_state.table_data:
     output_col1, output_col2, output_col3 = st.columns([1, 2, 1])
     with output_col2:
@@ -36,13 +36,8 @@ if st.session_state.table_data:
         st.write("### Table of Entries")
         st.dataframe(df)
 
-        # Button to delete table contents
-        if st.button("Delete Table Contents"):
-            # Confirmation prompt
-            confirmation = st.radio("Are you sure you want to delete the table contents?", ("No", "Yes"))
-            if confirmation == "Yes":
-                # If confirmed, clear the table data
-                st.session_state.table_data = []
-                st.success("Table contents deleted.")
-            elif confirmation == "No":
-                st.info("Deletion canceled.")
+        # Button to clear table contents
+        if st.button("Clear Table"):
+            # Clear the table data
+            st.session_state.table_data = []
+            st.success("Table contents cleared.")
