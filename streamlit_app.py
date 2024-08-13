@@ -13,10 +13,12 @@ with col2:
 if "table_data" not in st.session_state:
     st.session_state.table_data = []
 
-# Input fields with longer boxes
-date_input = st.date_input("Date")
-question_input = st.text_area("Question", height=100, key="question_input", help="Enter your question here.")
-answer_input = st.text_area("Answer", height=150, key="answer_input", help="Enter the answer here.")
+# Input fields with limited width
+input_col1, input_col2, input_col3 = st.columns([1, 2, 1])
+with input_col2:
+    date_input = st.date_input("Date")
+    question_input = st.text_area("Question", height=100, key="question_input", help="Enter your question here.")
+    answer_input = st.text_area("Answer", height=150, key="answer_input", help="Enter the answer here.")
 
 # Button to add the input to the table
 if st.button("Add to Table"):
