@@ -28,6 +28,11 @@ with input_col2:
             "Answer": answer_input
         })
 
+        # Clear the input boxes
+        st.session_state['question_input'] = ""
+        st.session_state['answer_input'] = ""
+        st.experimental_rerun()  # Force a rerun to update the UI with cleared inputs
+
 # Centered output table and clear button
 if st.session_state.table_data:
     output_col1, output_col2, output_col3 = st.columns([1, 2, 1])
@@ -40,4 +45,5 @@ if st.session_state.table_data:
         if st.button("Clear Table"):
             # Clear the table data
             st.session_state.table_data = []
+            st.experimental_rerun()  # Force a rerun to update the UI with cleared table
             st.success("Table contents cleared.")
