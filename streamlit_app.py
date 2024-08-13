@@ -5,8 +5,8 @@ import pandas as pd
 st.set_page_config(layout="wide")
 
 # Centered logo and title
+st.markdown("<div style='text-align: center;'><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx1eoyIn1KclLg8BeRImrb58PyIXqnh1WesQ&s' width='150'/></div>", unsafe_allow_html=True)
 st.markdown("<h1 style='text-align: center;'>Question and Answer Table</h1>", unsafe_allow_html=True)
-st.image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx1eoyIn1KclLg8BeRImrb58PyIXqnh1WesQ&s", width=150, use_column_width=False)
 
 # Initialize the session state for storing table data
 if "table_data" not in st.session_state:
@@ -28,10 +28,20 @@ with input_col2:
             "Answer": answer_input
         })
 
-# Centered output table
+# Centered output table and delete button
 if st.session_state.table_data:
     output_col1, output_col2, output_col3 = st.columns([1, 2, 1])
     with output_col2:
         df = pd.DataFrame(st.session_state.table_data)
         st.write("### Table of Entries")
         st.dataframe(df)
+
+        # Delete table button
+        if st.button("Delete Table Contents"):
+            if st.confirm_dialog("Are you sure you want to delete the table contents?"):
+                # If confirmed, clear the table data
+                st.session_state.table_data = []
+                st.success("Table contents deleted.")
+            else:
+                st.info("Deletion canceled.")
+
