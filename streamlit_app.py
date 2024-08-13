@@ -6,7 +6,7 @@ st.set_page_config(layout="wide")
 
 # Centered logo and title
 st.markdown("<div style='text-align: center;'><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx1eoyIn1KclLg8BeRImrb58PyIXqnh1WesQ&s' width='150'/></div>", unsafe_allow_html=True)
-st.markdown("<h1 style='text-align: center;'>CX Team Fin AI Trainer 🧠 </h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>CX Team Fin AI Trainer 🎉 </h1>", unsafe_allow_html=True)
 
 # Initialize the session state for storing table data
 if "table_data" not in st.session_state:
