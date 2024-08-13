@@ -36,12 +36,13 @@ if st.session_state.table_data:
         st.write("### Table of Entries")
         st.dataframe(df)
 
-        # Delete table button
+        # Button to delete table contents
         if st.button("Delete Table Contents"):
-            if st.confirm_dialog("Are you sure you want to delete the table contents?"):
+            # Confirmation prompt
+            confirmation = st.radio("Are you sure you want to delete the table contents?", ("No", "Yes"))
+            if confirmation == "Yes":
                 # If confirmed, clear the table data
                 st.session_state.table_data = []
                 st.success("Table contents deleted.")
-            else:
+            elif confirmation == "No":
                 st.info("Deletion canceled.")
-
